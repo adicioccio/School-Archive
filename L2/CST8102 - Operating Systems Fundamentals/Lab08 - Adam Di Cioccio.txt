@@ -1,0 +1,135 @@
+#Lab08
+#Adam Di Cioccio - 41019241
+#CST8102-300
+#myscript.sh
+#4/9/2021
+#This script allows the user to create and manage groups in Linux.
+
+#!/bin/bash
+
+#set default value of choice = n
+choice=n
+
+#while loop that repeats until 'Q' or 'q' is selected (quit)
+while [ "$choice" != "Q" ] && [ "$choice" != "q" ]
+        do
+
+        #clear screen
+        clear
+        #print out menu
+        echo "Choose one of the following options below:"
+        echo "A to Create a user account"
+        echo "B to Delete a user account"
+        echo "C to Change Supplementary Group for a user account"
+        echo "D to Change Initial Group for a user account"
+        echo "E to Change Default Login Shell for a user account"
+        echo "F to Change Account Expiration Date for a user account"
+        echo "Q to Quit the Program"    
+        #prompt user to select option
+        echo "Select an option: " 
+        #set into variable input
+        read input
+        #set users input into choice variable for if and while loops
+        choice=$input
+
+        #if A is selected
+        if [ "$choice" = "A" ] || [ "$choice" = "a" ]
+        then
+                echo "A Selected." 
+             #prompt and gather inputs from user and store into variables
+                echo "Please enter the username: "
+                read username
+                echo "User's home directory: "
+                read homedir
+                echo "User's default login shell"
+                read loginshell
+
+                #create the user with the users inputs
+                useradd $username -d $homedir -m -s $loginshell
+                #wait 3 seconds
+                sleep 3
+
+        #if B is selected
+        elif [ "$choice" = "B" ] || [ "$choice" = "b" ]
+        then
+                echo "B Selected." 
+
+                #prompt and gather input from user
+                echo "Please enter the user you would like to delete"
+                read username0
+
+                #delete the user with input from user
+                userdel $username0 -r
+                #wait 3 seconds
+                sleep 3
+
+        #if C is selected
+        elif [ "$choice" = "C" ] || [ "$choice" = "c" ]
+        then
+                echo "C Selected."
+
+                #prompt and gather inputs from user and store into variables
+                echo "Please enter the user you would like to modify"
+                read username1
+                echo "Please enter the group name you would like to add as suplementary"
+                read groupname
+
+                #add suplementary group
+                usermod -G $groupname $username1
+                #wait 3 seconds
+                sleep 3
+
+        #if D is selected
+        elif [ "$choice" = "D" ] || [ "$choice" = "d" ]
+        then
+                echo "D Selected."
+
+                #prompt and gather inputs from user and store into variables
+                echo "Please enter the user you would like to modify"
+                read username2
+                echo "Please enter the group name you would like to set as new initial group"
+                read groupname0
+
+                #set new initial group
+                usermod $username2 -g $groupname0
+                #wait 3 seconds
+                sleep 3
+
+        #if E is selected
+        elif [ "$choice" = "E" ] || [ "$choice" = "e" ]
+        then
+                echo "E Selected."
+
+                #prompt and gather inputs from user and store into variables
+                echo "Please enter the user you would like to modify"
+                read username3
+                echo "Please enter the new shell name for this user"
+                read shell
+
+                #change users shell
+                usermod $username3 -s $shell
+                #wait 3 seconds
+                sleep 3
+
+        #if F is selected
+        elif [ "$choice" = "F" ] || [ "$choice" = "f" ]
+        then
+                echo "F Selected."
+
+                #prompt and gather inputs from user and store into variables
+                echo "Please enter the user you would like to modify"
+                read username4
+                echo "Please enter new expiration date of this account(YYYY-MM-DD)"
+                read expire
+
+                #change expiry date on inputted account
+                chage -E $expire $username4
+                #wait 3 seconds
+                sleep 3
+
+#end if statement
+fi
+#end while loop
+done
+
+

@@ -1,0 +1,92 @@
+#Adam Di Cioccio
+#41019241
+#CST8102-300
+#Lab07 - 4/2/2021
+#Student grading system that calculates students final numeric and letter grade.
+
+#!/bin/bash
+
+#reset before start
+reset
+
+#ask user to input assignment mark
+echo "Enter Assignment mark (0-40):"
+#store into assignment variable
+read assignment
+
+#ask user to input test 1 mark
+echo "Enter Test 1 mark (0-15):"
+#store into test1 variable
+read test1
+
+#ask user to input test 2 mark
+echo "Enter Test 2 mark (0-15):"
+#store into test2 variable
+read test2
+
+#ask user to input final exam mark
+echo "Enter Final exam mark (0-30):"
+#store into final variable
+read final
+
+#add all inputs together into new variable sum
+sum=`expr $assignment + $test1 + $test2 + $final`
+
+#if grade >= 90 and grade <= 100 set grade to A+
+if [ $sum -ge "90" ] && [ $sum -le "100" ]
+then
+        grade="A+"
+#if grade >= 85 and grade <= 89 set grade to A
+elif [ $sum -ge "85" ] && [ $sum -le "89" ]
+then
+        grade="A"
+#if grade >= 80 and grade <= 84 set grade to A-
+elif [ $sum -ge "80" ] && [ $sum -le "84" ]
+then
+        grade="A-"
+
+#if grade >= 77 and grade <= 79 set grade to B+
+elif [ $sum -ge "77" ] && [ $sum -le "79" ]
+then
+        grade="B+"
+#if grade >= 73 and grade <= 76 set grade to B
+elif [ $sum -ge "73" ] && [ $sum -le "76" ]
+then
+        grade="B"
+#if grade >= 70 and grade <= 73 set grade to B-
+elif [ $sum -ge "70" ] && [ $sum -le "73" ]
+then
+        grade="B-"
+#if grade >= 67 and grade <= 69 set grade to C+
+elif [ $sum -ge "67" ] && [ $sum -le "69" ]
+then
+        grade="C+"
+#if grade >= 63 and grade <= 66 set grade to C
+elif [ $sum -ge "63" ] && [ $sum -le "66" ]
+then
+        grade="C"
+#if grade >= 60 and grade <= 62 set grade to C-
+elif [ $sum -ge "60" ] && [ $sum -le "62" ]
+then
+        grade="C-"
+#if grade >= 57 and grade <= 59 set grade to D+
+elif [ $sum -ge "57" ] && [ $sum -le "59" ]
+then
+        grade="D+"
+#if grade >= 53 and grade <= 56 set grade to D
+elif [ $sum -ge "53" ] && [ $sum -le "56" ]
+then
+        grade="D"
+#if grade >= 50 and grade <= 52 set grade to D-
+elif [ $sum -ge "50" ] && [ $sum -le "52" ]
+then
+        grade="D-"
+#if grade >= 0 and grade <= 49 set grade to F
+elif [ $sum -ge "0" ] && [ $sum -le "49" ]
+then
+        grade="F"
+#end if statement
+fi
+
+#output the numeric and letter grade
+echo "Final numeric grade is a $sum, and your final letter grade is a $grade"

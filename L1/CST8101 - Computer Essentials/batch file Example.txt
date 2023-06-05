@@ -1,0 +1,24 @@
+@echo off
+:menu
+cls
+echo Press 1 to run the ipconfig command
+echo Press 2 to run the ipconfig/all command
+echo:
+echo Press q to quit program
+
+set /p choice="Enter the number of the operation you wish to run: "
+
+if "%choice%"=="1" goto one
+if "%choice%"=="2" goto two
+
+if "%choice%"=="q" exit
+
+:one
+ipconfig
+pause
+goto menu
+
+:two
+ipconfig /all
+pause
+goto menu

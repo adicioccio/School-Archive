@@ -1,0 +1,93 @@
+#Lab09
+#Adam Di Cioccio - 41019241
+#CST8102-300
+#mycalc.sh
+#4/13/2021
+#This script allows the user to add or subtract two numbers.
+
+#!/bin/bash
+
+#set default value of choice to n
+choice=n
+
+#while loop that repeats until 'X' or 'x' is selected (quit)
+while [ "$choice" != "X" ] && [ "$choice" != "x" ]
+        do
+
+        #clear screen
+        clear
+
+        #display menu and read input
+        echo "C) Calculation"
+        echo "X) Exit the Program"
+        read input
+
+        #set input into choice variable
+        choice=$input
+
+        #if user selected "c" or "C" begin the program
+        if [ "$choice" = "C" ] || [ "$choice" = "c" ]
+        then
+
+                #prompt user and read input
+                echo "Please enter the first number."
+                read num1
+
+                #clear screen
+                clear
+
+                #display menu and read user input
+                echo "+) Addition"
+                echo "-) Subtraction"
+                echo "X) Exit the Program"
+                read operation
+
+                #cleear the screen
+                clear
+
+                #prompt user and read input
+                echo "Please enter the second number."
+                read num2
+
+                #declare answer variable
+                answer=0
+
+                #if user chose addition
+                if [ "$operation" = "+" ]
+                then
+                        #add two numbers and set into variable
+                        answer=`expr $num1 + $num2`
+
+                #if user chose subtraction
+                elif [ "$operation" = "-" ]
+                then
+                        #subtract the second number from first and set into variable
+                        answer=`expr $num1 - $num2`
+
+                #end if statement
+                fi
+
+                #print out answer
+                echo "The answer is: $answer"
+                #wait 3 seconds
+                sleep 3
+
+        #if user enters "X" or "x"
+        elif [ "$choice" = "X" ] || [ "$choice" = "x" ]
+        then
+                #quit program message
+                echo "Quitting program."
+                #wait 1 second
+                sleep 1
+
+        #if user didnt input correct option
+        else
+                #invalid input message
+                echo "Invalid input. Please try again!"
+                #wait 1 second
+                sleep 1
+
+#end if statement
+fi
+#end while loop
+done

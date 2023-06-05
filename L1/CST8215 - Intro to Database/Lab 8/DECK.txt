@@ -1,0 +1,26 @@
+﻿-- 
+-- Samples of running a Cartesian Product
+--
+DROP TABLE IF EXISTS Suit;
+
+CREATE TABLE Suit( Suit VARCHAR( 7 ) );
+
+DROP TABLE IF EXISTS Rank;
+CREATE TABLE Rank( Rank VARCHAR( 2 ) );
+
+--truncate table suit;
+INSERT INTO Suit( Suit ) VALUES ( 'Diamond' ), ( 'Spade' ), ( 'Club' ), ( 'Heart' );
+SELECT * FROM Suit;
+
+--truncate table rank;
+INSERT INTO Rank( Rank ) 
+VALUES( 'A' ), ( '2' ), ( '3' ), ( '4' ), ( '5' ), ( '6' ), ( '7' ), 
+( '8' ), ( '9' ), ( '10' ), ( 'J' ), ( 'Q' ), ( 'K' );
+-- ==============================================
+SELECT * FROM rank;
+-- ==============================================
+-- CROSS JOIN Rank X Suit. 
+-- CROSS JOIN is not commutative, R X S is not equal to S X R
+--
+SELECT * FROM Rank, Suit;
+SELECT * FROM Suit, Rank;

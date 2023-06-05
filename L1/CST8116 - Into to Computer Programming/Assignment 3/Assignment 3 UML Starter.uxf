@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>280</y>
+      <w>160</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>UserInput
+--
+keyboard:Scanner
+-validInput:boolean
+-userInput:int
+-minValue:int
+-minValue:double
+-maxValue:int
+-maxValue:double
+--
+input()
+input2()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>380</y>
+      <w>200</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>MenuSystem
+--
+_+EDIT_VALUES:int = 1_
+_+SHOW_STATUS:int = 2_
+_+ADD:int = 3_
+_+SUBTRACT:int = 4_
+_+MULTIPLY:int = 5_
+_+DIVIDE:int = 6_
+_+REMAINDER:int = 7_
+_+EXIT:int = 8_
+--
++MenuSystem()
++optionList():String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>280</y>
+      <w>230</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Program
+--
++programIsRunning:boolean
+
+--
+_+main(args:String[]):void_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>310</x>
+      <y>490</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Diagram updated by
+Adam Di Cioccio</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>10</y>
+      <w>500</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>MathMachine
+--
+-leftOperand:double
+-rightOperand:double
+--
+MathMachine()
+MathMachine(double - leftOperand, double - rightOperand)
++getLeftOperand()
++setLeftOperand(leftOperand):void
++getRightOperand()
++setRightOperand(rightOperand):void
+add():double
+subtract():double
+multiply():double
+divide():double
+remainder():double
+reportStatus():String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
