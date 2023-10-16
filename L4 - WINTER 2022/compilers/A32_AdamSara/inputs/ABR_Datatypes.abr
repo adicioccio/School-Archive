@@ -1,0 +1,15 @@
+# Sara Mehari and Adam Di Cioccio #
+# Compilers - Lab Section 014 #
+# Abruzzo Language Example #
+
+main$ {
+	abr_int FoundationYear;
+	abr_flt Area, HDI;
+	abr_chr CountryName;
+
+	FoundationYear = -7000;
+	Area = 492.0;
+	HDI = 0.871;
+	CountryName = "Bulgary";
+	print(CountryName);
+}

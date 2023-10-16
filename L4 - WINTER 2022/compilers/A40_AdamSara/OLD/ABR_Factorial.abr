@@ -1,0 +1,26 @@
+# Sara Mehari and Adam Di Cioccio #
+# Compilers - Lab Section 014 #
+# Abruzzo Language Example # 
+
+main$ {
+	abr_data {
+		abr_int i, n, f;
+    		abr_chr input;
+	}
+
+	abr_code {
+		f = 1;
+		i = 1;
+		print$("Write a number:");
+		in$(input);
+
+		 
+
+		abr_while(i<n) {
+       		 	f = f * i;
+        		i = i + 1;
+    		}
+		print("Factorial: " + f);
+	}	
+    
+}

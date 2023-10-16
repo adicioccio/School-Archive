@@ -1,0 +1,72 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; FX.asm
+                        ;
+                        ; Author: Adam Di Cioccio
+                        ; Course: CST8216
+                        ; Student Number: 041019241
+                        ; Date: Nov 17, 2021
+                        ;
+                        ; Purpose:      To illustrate how to solve an equation such as:
+                        ;               f(x) = 5x + 3 for x = 0 to 9, using 8-bit Multiplication
+                        ;               The calculated x in f(x) values will be placed into the X_Values array
+                        ;               The calculated f(x) values will be placed into the Results array
+                        ;
+                        
+                        
+1000                            org     $1000
+1000                    count:    ds      1
+                        
+                        
+000a                    ARRAY_LEN       equ     10      ; Number of values to calculate (10): x = 0 to 9
+                                                        ; Need two arrays of length ARRAY_LEN
+                                                        ; - one holds x = 0 to 9
+                                                        ; - one holds f(x) results
+                        
+1020                            org        $1020           ; org as per assignment instructions
+1020                    X_Values
+1020                            ds      ARRAY_LEN       ; Complete this line of code
+                                                        ; Value of x used in calculation stored here
+102a                    End_X_Values
+                        
+1030                            org     $1030           ; org as per assignment instructions
+                                
+1030                    Results
+1030                            ds      ARRAY_LEN       ; Complete this line of code
+                                                        ; Result of f(x) calculation stored here
+103a                    End_Results
+                        
+                        ; Expected Results
+                        
+                        ;
+                        
+                        
+2000                            org     $2000           ; start the program at memory address 2000
+2000 cf 20 00                   lds     #$2000          ; initialize stack pointer
+2003 ce 10 20                   ldx     #X_Values       ; load X_Values into loader x
+                                
+2006 b6 10 00           Loop    ldaa    count           ; start of loop / load count into accumulator a
+2009 c6 05                      ldab    #$5             ; loads the hex value 5 into accumulator b
+200b 12                         mul                     ; mulitplys accumulators, results into acc b (acc a reset)
+200c cb 03                      addb    #$3             ; add hex 3 to accumulator b
+                        
+200e b6 10 00           	ldaa    count           ; load accumulator a with count
+2011 6a 00                      staa    0,x             ; store from accumulator a with current x value
+2013 6b e0 10                   stab    16,x            ; store from accumulator b with offset of 16 into x_values
+2016 08                         inx                     ; increase x by 1
+                        
+2017 b6 10 00                   ldaa    count           ; load count into a
+201a 42                         inca                    ; increment by 1
+201b 7a 10 00                   staa    count           ; update count value
+                        
+201e 8e 10 2a                   cpx     #End_X_Values   ; check if x_values has next
+2021 26 e3                      bne     Loop            ; loop
+                        
+                        
+2023 3f                         swi                     ; end program
+                                end
+
+Executed: Fri Nov 19 18:24:28 2021
+Total cycles: 51, Total bytes: 36
+Total errors: 0, Total warnings: 0

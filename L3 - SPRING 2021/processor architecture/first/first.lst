@@ -1,0 +1,29 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; first.asm
+                        
+                        ; Author:       Adam Di Cioccio
+                        ; Student Num:  041019241
+                        ; Date:         Nov 11, 2021
+                        
+                        ; Purpose: Add $15 and $16 then subtract one
+                        
+                        ; Start data (origin) at memory address $1000
+1000                    	org     $1000
+                        ; Store numbers to be added in memory
+1000 15                 p:      db      $15
+1001 16                 q:      db      $16
+                        ; Free up a slot in memory for the answer to go into
+1002                    r:      ds      1
+                        ; Start importing program at memory address $2000
+2000                            org     $2000
+2000 b6 10 00                   ldaa    p
+2003 bb 10 01                   adda    q
+2006 43                         deca
+2007 7a 10 02                   staa    r
+                                end
+
+Executed: Thu Nov 11 14:05:00 2021
+Total cycles: 13, Total bytes: 12
+Total errors: 0, Total warnings: 0

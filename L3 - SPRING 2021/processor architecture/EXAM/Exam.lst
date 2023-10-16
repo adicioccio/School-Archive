@@ -1,0 +1,69 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; Exam.asm
+                        ;
+                        ; Name:                 < Your name goes here >
+                        ; Student Number:       < Your student number goes here >
+                        ;
+                        ; NOTE:                 No credit will be given if the above information is missing
+                        ;
+                        ; Final Exam Quiz instructions and this starter code
+                        ; provides instructions on what this program must do
+                        
+                        ; Program Constants
+                        
+0014                    OFFSET          equ     20             ; <== Calculate Constant Offset Addressing Mode
+                                                                ;     offset value from the Array to Index_Number_Array
+                                                                ;     using the appropriate adddresses.
+                                                                ;      You may HARD CODE this value.
+                        
+0012                    DIVISOR         equ     18             ; <== Determine the divisor used with the
+                                                                ;     idiv instruction from Final Exam Quiz instructions
+0010                    ARRAY_LEN       equ     End_Array-Array ; dynamic array size calculation
+0000                    Index           equ     $00             ; Starting Array index
+00cc                    ORIG_ZERO       equ     $CC             ; if original Array value = 0, store this value
+00ff                    NON_ZERO        equ     $FF             ; if idiv results not equal to zero, store this value
+                        
+                        
+1000                            org     $1000
+1000 00 12 23 37 48 00  Array   db      0,18,35,55,72,0,0,126,144,0,0,198,215,235,252,0        ; cut and paste the array provided to you
+     00 7e 90 00 00 c6
+     d7 eb fc 00
+                                                                ; in the Final Exam Quiz instructions here
+1010                    End_Array
+                        
+1020                            org	$1020                   ; <== Final Exam Quiz instructions contains
+                                                                ;     this value. Use this address to
+                                                                ;     calculate your offset for
+                                                                ;     CONSTANT OFFSET ADDRESSING mode
+1020                    Index_Number_Array
+1020                                    ds      End_Array-Array
+1030                    End_Index_Number_Array
+                        
+2000                            org     $2000
+2000 cf 20 00                   lds     #$2000
+2003 cd 10 00                   ldy     #Array
+                        ; your code goes here
+2006 a6 40              Loop    ldaa    Index,y
+2008 81 00                      cmpa    #$00
+200a 27 02                      beq     IsZero
+200c 5a 00                      staa    Index,ARRAY_LEN
+                        
+                        
+200e d6 00              IsZero  ldab    Index
+2010 5b 00                      stab    Index,ARRAY_LEN
+                                
+2012 d1 10                      cmpb    ARRAY_LEN
+2014 27 07              	beq     EndProg
+2016 d6 00                      ldab    Index
+2018 52                 	incb
+2019 5b 00                      stab    Index
+201b 20 e9              	bra     Loop
+                        
+201d 3f                 EndProg	swi
+                                end
+
+Executed: Wed Dec 15 14:13:07 2021
+Total cycles: 48, Total bytes: 46
+Total errors: 0, Total warnings: 0

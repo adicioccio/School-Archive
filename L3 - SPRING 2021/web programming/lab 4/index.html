@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js%22%3E"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js%22%3E"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js%22%3E"></script>
+
+<html>
+
+    <head>
+    
+    <title>Lab04 - Length Converter</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+        
+    </head>
+
+    <body>
+
+        <div class = "container-lg">
+            
+            <div class = "row text-light bg-dark">
+                <div id="header">
+                    <h1><center><b>Computer Engineering &amp Computing Science - Web Programming</b></center></h1>
+                </div>
+            </div>
+		
+            <div class = "row text-end">
+                <div id="menu">
+                    <h2><a href="http://adamd.sgedu.site/Lab1/index.html">Lab2</a>  <a href="http://adamd.sgedu.site/Lab3/index.html">Lab3</a></h2>
+                </div>
+		    </div>
+			
+            <div class = "row">
+                <div id="content">
+                    <h3>Length Converter Using Bootstrap</h3> 
+                        <h3>  ------------------------------------------------------</h3>	  
+                    <h4>This program converts from inch to centimeter and vice versa</h4>
+                        <h4>  -------------------------------------------------------------</h4>
+		            <h5>Please click Convert button to perform length conversion</h5>
+                        <h5>  -------------------------------------------------------------</h5>
+                    
+                    <table>      
+                        <tr>
+                            <td><input onclick="convertLength()" name="btnConvert" id="btnConvert" value="Convert!" type="button"></td>				
+                        </tr>       
+                    </table>
+                    
+                    <script>
+                        function convertLength() {
+                            var userInput = prompt("What unit would you like to convert? Please enter inch for inches or cent for centimeters.");
+                            
+                            switch(userInput) {
+                                case "inch":
+                                    var num = prompt("Please enter an integer value to be converted to centimeters.");
+                                    
+                                    if (isNaN(num)) {
+                                        alert("Invalid input!");
+                                    }
+                                
+                                    var result = (num*2.54).toFixed(2);
+                                    
+                                    alert("The integer " + num + " in inches converted into centimeters is " + result + ".");
+                                    
+                                    break;
+                                
+                                case "cent":
+                                    var num1 = prompt("Please enter an integer value to be converted to inches.");
+                                    
+                                    if (isNaN(num1)) {
+                                        alert("Invalid input!");
+                                    }
+                                    
+                                    var result1 = (num1*0.393701).toFixed(2);
+                                    
+                                    alert("The integer " + num1 + " in centimeters converted into inches is " + result1 + ".");
+                                    
+                                    break;
+                                
+                                default:
+                                    alert("Invalid input! Please enter either inch or cent.");
+                                    break;
+                                
+                                   
+                                   }
+                        }
+                    </script>
+                
+                </div>  
+			</div>
+		
+            <div class = "row text-dark bg-light fixed-bottom">
+                <div id="footer">			
+                    <p><center>&copy Created by Adam Di Cioccio <br>  041019241 <br>  <a href="dici0007@algonquinlive.com">dici0007@algonquinlive.com</a></center></p>
+                </div>		
+			</div>  
+        
+        </div>
+    
+    </body>
+    
+</html>

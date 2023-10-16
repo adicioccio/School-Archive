@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js%22%3E"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js%22%3E"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js%22%3E"></script>
+
+<html>
+
+    <head>
+    
+    <title>Prime for Assignment 1</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+        
+    </head>
+
+    <body onLoad = "pat();">
+
+        <div class = "container-lg">
+            
+            <div class = "row text-light bg-dark">
+                <div id="header">
+                    <h1><center><b>Computer Engineering &amp Computing Science - Web Programming</b></center></h1>
+                </div>
+            </div>
+		
+            <div class = "row text-end bg-dark width-1000">
+                <div id="menu">
+                    <h2><a href="index.html">index</a>
+                        <a href="palindrome.html">palindrome</a>
+                        <a href="pattern.html">pattern</a>  
+                        <a href="prime.html">prime</a></h2>
+                </div>
+		    </div>
+			
+            <div class = "row">
+                <div id="content">
+                    <h3>This is the pattern page.</h3> 
+                        <h3>  ----------------------------------</h3>
+                    <p id = "output">Output.</p>
+                        
+                    
+                
+                    <table>      
+                        <tr>
+                            <td><input onclick="pat()" value="Run" type="button"></td>				
+                        </tr>       
+                    </table>
+                    
+                    <p><br><br><br><br></p>
+                    
+                    <script>
+                    
+                        function pat() {
+                            
+                            var shape;
+                            var validInput = false;
+                            while (validInput == false) {
+                                shape = prompt("Please enter a 1 for triangle, 2 for diamond or 3 for rectangle: ");
+                                
+                                if (isNaN(parseInt(shape))) {
+                                    alert("Wrong input! Input an integer.");
+                                    validInput = false;
+                                } else if (shape <= 3 && shape > 0) {
+                                    validInput = true;       
+                                } else {
+                                    alert("Wrong input! Please select either 1, 2, or 3.");
+                                    validInput = false;
+                                }
+                            }
+                             
+                            
+                            var shapeText;
+                            if (shape == 1) {
+                                shapeText = "triangle";
+                            } else if (shape == 2) {
+                                shapeText = "diamond";  
+                            } else if (shape == 3) {
+                                shapeText = "rectangle";          
+                            }
+                            
+                            
+                            var size;
+                            validInput = false;
+                            while (validInput == false) {
+                                size = prompt("Please enter size of the " + shapeText);
+                                
+                                if (isNaN(parseInt(size))) {
+                                    alert("Wrong input! Input an integer.");
+                                    validInput = false;
+                                } else if (size >= 3) {
+                                    validInput = true;
+                                } else {
+                                    alert("Wrong input! Number must be greater than 3.");
+                                    validInput = false;
+                                }
+                            }
+                            
+
+                            
+                            document.getElementById("output").innerHTML = "";
+                            
+                            if (shape == 1) {
+                                for (let i = 0; i < size; i++) {
+                                    for (let j = 0; j <= i; j++) {
+                                        document.getElementById("output").innerHTML += "*";
+                                    }
+                                    document.getElementById("output").innerHTML += "<br>";
+                                }
+                            } else if (shape == 2) {
+                                for (let i = 0; i < (size/2); i++) {
+                                    for (let j = 0; j <= i; j++) {
+                                        document.getElementById("output").innerHTML += "*";
+                                    }
+                                    document.getElementById("output").innerHTML += "<br>";
+                                }
+                                
+                                for (let i = (size/2); i > 0; i--) {
+                                    for (let j = i; j > 0; j--) {
+                                        document.getElementById("output").innerHTML += "*";
+                                    }
+                                    document.getElementById("output").innerHTML += "<br>";
+                                }
+                                
+                                
+                            } else if (shape == 3) {
+                                document.getElementById("output").innerHTML += "*".repeat(size);
+                                document.getElementById("output").innerHTML += "<br>";
+                                
+                                for (let i = 0; i < (size-2); i++) {
+                                    document.getElementById("output").innerHTML += "*";
+                                    document.getElementById("output").innerHTML += "-".repeat(size-2);
+                                    document.getElementById("output").innerHTML += "*<br>";
+                                }
+                                
+                                document.getElementById("output").innerHTML += "*".repeat(size);
+                            }
+                        }
+                        
+                        
+                    </script>
+                
+                </div>  
+			</div>
+		
+            <div class = "row text-dark bg-light fixed-bottom">
+                <div id="footer">			
+                    <p><center>&copy Created by Adam Di Cioccio <br>  041019241 <br>  <a href="dici0007@algonquinlive.com">dici0007@algonquinlive.com</a></center></p>
+                </div>		
+			</div>  
+        
+        </div>
+    
+    </body>
+    
+</html>

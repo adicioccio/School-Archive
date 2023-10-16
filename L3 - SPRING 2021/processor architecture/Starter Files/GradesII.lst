@@ -1,0 +1,93 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; GradesII.asm
+                        ;
+                        ; Author: Adam Di Cioccio
+                        ; Course: CST8216
+                        ; Student Number: 041019241
+                        ; Date: Nov 17, 2021
+                        ;
+                        ; Purpose:              To Tally up the number of As, Bs, Cs, Ds and Fs
+                        ;                       from a Grades Array as per 21F Flowchart for GradesII
+                        ;                       which uses a Nested-IF structure
+                        
+1000                            org        $1000             ; as per assignment instructions
+1000                    Grades
+                        #include Grades.txt     ; Grades file supplied for assignment
+1000 46 41 46 46 43     	db	'F, 'A, 'F, 'F, 'C
+1005 41 41 46 43 43     	db	'A, 'A, 'F, 'C, 'C
+100a 41 41 46           	db	'A, 'A, 'F
+100d 43 42 46           	db	'C, 'B, 'F
+                        
+                        
+                        
+                        #endinclude
+
+1010                    End_Grades
+                        
+                        ; Expected Result
+                        
+                        ;
+1020                            org     $1020   ; store counters at memory address 1020
+1020                    countA  ds      1       ; counter for 'A'
+1021                    countB  ds      1       ; counter for 'B'
+1022                    countC  ds      1       ; counter for 'C'
+1023                    countD  ds      1       ; counter for 'D'
+1024                    countF  ds      1       ; counter for 'F'
+                        
+2000                            org     $2000   ; start program at memory address 2000
+2000 ce 10 00                   ldx     #Grades ; load into x the Grades array
+2003 cf 20 00                   lds     #$2000  ; initialize stack pointer
+                        
+2006 a6 30              Loop    ldaa    1,x+    ; goes to next value in Grades everytime looped
+                        
+2008 81 41                      cmpa    #$41    ; compare the value to ASCII 'A'
+200a 27 10                      beq     aa      ; if it is equal call 'aa'
+                                
+200c 81 42                      cmpa    #$42    ; compare the value to ASCII 'B'
+200e 27 15                      beq     bb      ; if it is equal call 'bb'
+                                
+2010 81 43                      cmpa    #$43    ; compare the value to ASCII 'C'
+2012 27 1a                      beq     cc      ; if it is equal call 'cc'
+                                
+2014 81 44                      cmpa    #$44    ; compare the value to ASCII 'D'
+2016 27 1f                      beq     dd      ; if it is equal call 'dd'
+                                
+2018 81 46                      cmpa    #$46    ; compare the value to ASCII 'F'
+201a 27 24                      beq     ff      ; if it is equal call 'ff'
+                        
+201c f6 10 20           aa      ldab    countA  ; 'aa' / set accumulator b to countA
+201f 52                         incb            ; increment accumulator b
+2020 7b 10 20                   stab    countA  ; set new value
+2023 20 24                      bra     P       ; goto P
+                        
+2025 f6 10 21           bb      ldab    countB  ; 'bb' / set accumulator b to countB
+2028 52                         incb            ; increment accumulator b
+2029 7b 10 21                   stab    countB  ; set new value
+202c 20 1b                      bra     P       ; goto P
+                                
+202e f6 10 22           cc      ldab    countC  ; 'cc' / set accumulator b to countC
+2031 52                         incb            ; increment accumulator b
+2032 7b 10 22                   stab    countC  ; set new value
+2035 20 12                      bra     P       ; goto P
+                        
+2037 f6 10 23           dd      ldab    countD  ; 'dd' / set accumulator b to countD
+203a 52                         incb            ; increment accumulator b
+203b 7b 10 23                   stab    countD  ; set new value
+203e 20 09                      bra     P       ; goto P
+                        
+2040 f6 10 24           ff      ldab    countF  ; 'ff' / set accumulator b to countF
+2043 52                         incb            ; increment accumulator b
+2044 7b 10 24                   stab    countF  ; set new value
+2047 20 00                      bra     P       ; goto P
+                        
+2049 8e 10 10           P       cpx     #End_Grades     ; check if Grades has next value(P)
+204c 26 b8                      bne     Loop            ; restart loop
+                        
+204e 3f                         swi     ; end program
+                                end
+
+Executed: Fri Nov 19 17:15:08 2021
+Total cycles: 105, Total bytes: 95
+Total errors: 0, Total warnings: 0

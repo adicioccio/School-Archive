@@ -1,0 +1,1 @@
+ = (struct Employee*) malloc(sizeof(struct Employee))

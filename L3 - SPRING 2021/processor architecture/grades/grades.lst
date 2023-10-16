@@ -1,0 +1,63 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; Grades.asm
+                        ; Assignment 2B
+                        ; Author:               Adam
+                        ; Sudent Number:        041006277
+                        ; Date:                 11 Nov 2021
+                        ; purpose:              Assignment 2B
+005a                    NINETY        equ        90              ; Constant variables
+0050                    EIGHTY        equ        80
+0046                    SEVENTY equ        70
+003c                    SIXTY        equ        60
+1000                            org        $1000
+                                
+1000                    Marks
+                        #include        Marks.txt       ; Get the data from the text file called Marks
+1000 4c 3d 32 50        		db	76, 61, 50, 80
+1004 61 5d 2e 34        		db	97, 93, 46, 52
+1008 4f 3a 4d 39        		db	79, 58, 77, 57
+100c 64 37 31 57        		db	100, 55, 49, 87
+                        #endinclude
+
+1010                    EndMarks         ; org cannot have comments
+1030                            org        $1030
+                                
+1030                    GradeA        ds        EndMarks-Marks
+2000                            org        $2000
+2000 ce 10 00                   ldx        #Marks          ; pointer x gets set to the start of the Marks array
+2003 cd 10 30                   ldy        #GradeA         ; pointer y gets set to memory that stores the result
+                                
+2006 a6 30              Loop        ldaa        1,x+            ; load register with pointer, then post-increment x by 1
+2008 81 5a                      cmpa        #NINETY          ; is it 90?
+200a 24 10                      bhs        aa              ; if aa is higher or the same as
+200c 81 50                      cmpa        #EIGHTY          ; is it 80?
+200e 24 10                      bhs        bb              ; if bb is higher or the same as
+2010 81 46                      cmpa        #SEVENTY         ; is it 70?
+2012 24 10                      bhs        cc              ; if cc is higher or the same as
+2014 81 3c                      cmpa        #SIXTY           ; is it 60?
+2016 24 10                      bhs        dd              ; if dd is higher or the same as
+2018 81 3c                      cmpa        #SIXTY           ; is it 60?
+201a 25 10                      blo        ff              ; if ff is below
+                                
+201c c6 41              aa        ldab        #'A'
+201e 20 10                      bra        Read
+2020 c6 42              bb        ldab        #'B'
+2022 20 0c                      bra        Read
+2024 c6 43              cc        ldab        #'C'
+2026 20 08                      bra        Read
+2028 c6 44              dd        ldab        #'D'
+202a 20 04                      bra        Read
+202c c6 46              ff      ldab        #'F'
+202e 20 00                      bra        Read
+                                
+2030 6b 70              Read        stab        1,y+            ; increment b
+2032 8e 10 10                   cpx        #EndMarks
+2035 26 cf                      bne        Loop            ; go go back to Read (line 33)
+2037 3f                         swi                             ; program quit
+                                end
+
+Executed: Thu Nov 11 20:54:37 2021
+Total cycles: 72, Total bytes: 72
+Total errors: 0, Total warnings: 0

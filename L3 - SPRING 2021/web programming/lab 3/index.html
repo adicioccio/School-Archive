@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+    
+    <title>CSS Examples</title>
+    <link href="StyleSheet.css" rel="stylesheet">
+    
+    </head>
+
+    <body>
+
+			<div id="header">
+				<h1><b>Computer Engineering &amp Computing Science - Web Programming</b></h1>
+			</div>
+		
+			<div id="menu">
+				<h2><a href="index.html">Index</a>  <a href="Multimedia.html">Multimedia</a></h2>
+			</div>
+		
+			<div id="content">
+				<h2>This is content from Task 3.</h2>
+                
+                <h3>Style Rule of Class Selector</h3>
+                
+                <xmp><style>.style1 {font-style: Italic; color: blue;}</style>
+<style>.style2 { color: green;} </style>
+                </xmp>
+                
+                <h3>Examples of Class Selector</h3>
+                
+                <style>.style1 {font-style: Italic; color: blue; } </style>
+                <style>.style2 {font-style: Italic; color: green;} </style>
+                
+                <p class="style1">This is an italized message.</p>
+                <p class="style2"><b>This is a bold and italized message.</b></p>
+                
+                
+                <h3>Style Rule of Id Selector</h3>
+                
+                <xmp><style>#idSelector {font-style: Italic; color: red;}</style>
+                
+                </xmp>
+                
+                <h3>Examples of Id Selector</h3>
+            
+                <style>#idSelector {font-style: Italic; color: red;}</style>
+                
+                <div id="idSelector">
+                    <p>This is an example of an ID selector</p>
+                    <p>This is another example of an ID selector</p>
+                </div>
+                
+                
+                <h3>Style Rule of Attribute Selector</h3>
+                
+                <xmp><style>[title]{cursor:help;padding-bottom:3px;border-bottom:2pxdottedblue;text-decoration:none;}</style>
+                
+                </xmp>
+                
+                <h3>Examples of Attribute Selector</h3>
+                
+                <style>[title]{cursor:help;padding-bottom:3px;border-bottom:2pxdottedblue;text-decoration:none;}</style>
+                
+                <img src="images/canada.png" title="Canada">
+                
+                
+                <h3>Style Rule of Pseudo Selector</h3>
+                
+                <xmp><style>a:link {text-decoration: underline; color: blue;}
+a:visited {text-decoration: underline; color: purple;}
+a:hover {text-decoration: none; font-weight: bold;}</style></xmp>
+                
+                <h3>Examples of Pseudo Selector</h3>
+                
+                <style>
+                    a:link {text-decoration: underline; color: blue;}
+                    a:visited {text-decoration: underline; color: purple;}
+                    a:hover {text-decoration: none; font-weight: bolder;}
+                </style>
+                
+                <ul>
+                    <li><a href="#">One</a></li>
+                    <li><a href="#">Two</a></li>
+                    <li><a href="#">Three</a></li>
+                </ul>
+                
+                
+                <h3>Style Rule of Contextual Selector</h3>
+                
+                <xmp>#main div p:first-child{color: orange;}</xmp>
+                
+                <h3>Examples of Contextual Selector</h3>
+                
+                <style>
+                #main div p:first-child{color: orange;}
+                </style>
+                
+                <div id="main">
+                
+                    <div><p>This text is orange.</p></div>
+                    
+                </div>
+                
+			</div>
+		
+			<div id="footer">			
+				<p>&copy Created by Adam Di Cioccio <br>  041019241 <br>  <a href="dici0007@algonquinlive.com">dici0007@algonquinlive.com</a></p>				
+			</div>
+
+    </body>
+    
+</html>

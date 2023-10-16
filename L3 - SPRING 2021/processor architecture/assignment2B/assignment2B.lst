@@ -1,0 +1,107 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; assignment2B.asm
+                        
+                        ; Author: Adam Di Cioccio
+                        ; StudentNum: 041019241
+                        ; Date: Nov 11, 2021
+                        
+                        ; Purpose: Grading system made in assembly language.
+                        
+                        ; declare constants
+005a                    NINETY        equ        90
+0050                    EIGHTY        equ        80
+0046                    SEVENTY        equ        70
+003c                    SIXTY        equ        60
+                        
+                                ; store marks.txt at memory address 1000
+1000                            org        $1000
+                        
+                        ; get input fro marks.txt file and store into marks
+1000                    Marks
+                        #include        Marks.txt
+1000 4c 3d 32 50        		db	76, 61, 50, 80
+1004 61 5d 2e 34        		db	97, 93, 46, 52
+1008 4f 3a 4d 39        		db	79, 58, 77, 57
+100c 64 37 31 57        		db	100, 55, 49, 87
+                        #endinclude
+
+1010                    EndofMarks
+                        
+                                ; store Grades array from marks.txt into memory
+1030                            org        $1030
+                        
+1030                    Grades        ds        EndofMarks-Marks
+                        
+                                ; start program
+2000                            org        $2000
+                                ; pointer x that points to marks.txt memory address
+2000 ce 10 00                   ldx        #Marks
+                                ; pointer y that goes to grades memory address
+2003 cd 10 30                   ldy        #Grades
+                        
+                        ; load accumulator A with value(increment x each call calling next value)
+2006 a6 30              Goto        ldaa        1,x+
+                                ; compare value to constant 90
+2008 81 5a                      cmpa        #NINETY
+                                ; check if value (branch) is higher or same then call nine
+200a 24 10              	bhs        nine
+                        
+                                ; compare value to constant 80
+200c 81 50                      cmpa        #EIGHTY
+                                ; check if value (branch) is higher or same then call eight
+200e 24 10              	bhs     eight
+                                
+                                ; compare value to constant 70
+2010 81 46                      cmpa        #SEVENTY
+                                ; check if value (branch) is higher or same then call seven
+2012 24 10              	bhs     seven
+                        
+                                ; compare value to constant 60
+2014 81 3c                      cmpa        #SIXTY
+                                ; check if value (branch) is higher or same then call six
+2016 24 10              	bhs     six
+                        
+                                ; compare value to constant 60
+2018 81 3c                      cmpa        #SIXTY
+                                ; check if value (branch) is lower then call fail
+201a 25 10              	blo     fail
+                        
+                        ; load char 'A' into accumulator B
+201c c6 41              nine        ldab        #'A'
+                                ; jump to Read memory address
+201e 20 10              	bra        Read
+                        
+                        ; load char 'B' into accumulator B
+2020 c6 42              eight        ldab        #'B'
+                                ; jump to Read memory address
+2022 20 0c              	bra        Read
+                        
+                        ; load char 'C' into accumulator B
+2024 c6 43              seven        ldab        #'C'
+                                ; jump to Read memory address
+2026 20 08              	bra        Read
+                        
+                        ; load char 'D' into accumulator B
+2028 c6 44              six        ldab        #'D'
+                                ; jump to Read memory address
+202a 20 04              	bra        Read
+                        
+                        ; load char 'F' into accumulator B
+202c c6 46              fail        ldab        #'F'
+                                ; jump to Read memory address
+202e 20 00              	bra        Read
+                        
+                        ; read memory address
+2030 6b 70              Read        stab        1,y+
+2032 8e 10 10                   cpx        #EndofMarks
+                                ; go to 'Goto' / restart loop
+2035 26 cf              	bne        Goto
+                                ; end program
+2037 3f                 	swi
+                                end
+
+Executed: Fri Nov 12 15:15:03 2021
+Total cycles: 72, Total bytes: 72
+Total errors: 0, Total warnings: 0
